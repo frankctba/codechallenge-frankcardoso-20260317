@@ -1,0 +1,6 @@
+@CodeChallenge.Api_HostAddress = http://localhost:5159
+
+GET {{CodeChallenge.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
