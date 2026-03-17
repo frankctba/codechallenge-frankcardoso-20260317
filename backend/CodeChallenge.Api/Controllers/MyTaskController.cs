@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace CodeChallenge.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/tasks")]
+    [Produces("application/json")]
     public class MyTaskController : ControllerBase
     {
         private static IList<MyTask> _tasks = new List<MyTask>();
@@ -17,8 +18,8 @@ namespace CodeChallenge.Api.Controllers
         }
 
         //- POST /api/tasks: Creates a new task.
-        [HttpPost(Name = "/api/tasks")]
-        public ActionResult<MyTask> Post([FromBody] MyTask newTask)
+        [HttpPost]
+        public ActionResult<MyTask> CreateNewTask([FromBody] MyTask newTask)
         {
             if (newTask == null)
             {
@@ -34,8 +35,8 @@ namespace CodeChallenge.Api.Controllers
         }
 
         //- GET /api/tasks: Returns the list of all tasks.
-        [HttpGet(Name = "/api/tasks")]
-        public IEnumerable<MyTask> GetAll()
+        [HttpGet]
+        public IEnumerable<MyTask> GetAllTasks()
         {
             return _tasks;
         }
