@@ -27,7 +27,11 @@ namespace CodeChallenge.Api.Controllers
                 return BadRequest();
             }
 
-            //Validate that title is not null or blank
+            if (string.IsNullOrWhiteSpace(newTask.Title))
+            {
+                _logger.LogWarning("Received task with null or blank title in POST request.");
+                return BadRequest("Title cannot be null or blank.");
+            }
 
             newTask.Id = Guid.NewGuid();
             _tasks.Add(newTask);
